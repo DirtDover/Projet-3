@@ -27,23 +27,28 @@ async function generateCard() {
 async function getCategories(url) {
     let rep = await fetch("http://localhost:5678/api/categories");
     let reponse = await rep.json();
-    console.log(reponse)
     return reponse;
 };
 
+async function generateCardFiltred(filter) {
 
-const arrayFilter = getCategories();
-const btnFilter = document.querySelector(".btn-filter1");
+    let categoriesFiltred = await getCategories("http://localhost:5678/api/categories")
 
-btnFilter.addEventListener("click", function () {
+    for (let i = 0; i < categoriesFiltred.length; i++) {
+        const itemcard = document.getElementById('gallery');
+        itemcard.innerHTML += `
+            <figure class="card-gallery">
+            <img crossorigin="anonymous" src="${categoriesFiltred[i].imageUrl}" alt="${categoriesFiltred[i].title}" />
+            <figcaption>${categoriesFiltred[i].title}</figcaption>
+        </figure>`;
+    };
+}
 
-    const workFilter = arrayFilter.filter(function (categorie) {
-        for (let i = 0; i < test.length; i++) {
-            return test[i].name === "Objets";
-        }
-    });
+const btn = document.querySelector(".btn-filter1");
+btn.addEventListener("click", () => {
+    generateCardFiltred();
+})
 
-});
 
 
 getWorks();
