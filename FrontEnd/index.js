@@ -49,4 +49,3 @@ getCategories();
 
 
 
-const { categories } = require("../Backend/models");
