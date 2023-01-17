@@ -32,14 +32,17 @@ async function getCategories(url) {
 };
 
 
-
+const arrayFilter = getCategories();
 const btnFilter = document.querySelector(".btn-filter1");
 
 btnFilter.addEventListener("click", function () {
-    const workFilter = reponse.filter(function (categorie) {
-        return reponse.name === "Objets"
+
+    const workFilter = arrayFilter.filter(function (categorie) {
+        for (let i = 0; i < test.length; i++) {
+            return test[i].name === "Objets";
+        }
     });
-    console.log(workFilter)
+
 });
 
 
