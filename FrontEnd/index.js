@@ -1,4 +1,6 @@
-async function getWorks() {
+
+
+async function getWorks(url) {
     let rep = await fetch("http://localhost:5678/api/works");
     let reponse = await rep.json();
     return reponse;
@@ -21,24 +23,30 @@ async function generateCard() {
     };
 };
 
-async function getCategories() {
+
+async function getCategories(url) {
     let rep = await fetch("http://localhost:5678/api/categories");
     let reponse = await rep.json();
+    console.log(reponse)
     return reponse;
 };
 
-const btnFilter = document.querySelector(".btn-filter");
+
+
+const btnFilter = document.querySelector(".btn-filter1");
 
 btnFilter.addEventListener("click", function () {
-    const workFilter = categories.filter(async function () {
-
-        await getCategories("http://localhost:5678/api/categories")
-        return [id = 2]
+    const workFilter = reponse.filter(function (categorie) {
+        return reponse.name === "Objets"
     });
-
+    console.log(workFilter)
 });
 
 
 getWorks();
 generateCard();
 getCategories();
+
+
+
+const { categories } = require("../Backend/models");
