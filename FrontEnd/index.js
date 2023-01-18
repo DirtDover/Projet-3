@@ -1,6 +1,6 @@
 
 
-async function getWorks(url) {
+async function getWorks() {
     let rep = await fetch("http://localhost:5678/api/works");
     let reponse = await rep.json();
     return reponse;
@@ -23,37 +23,38 @@ async function generateCard() {
     };
 };
 
+async function categoriesFiltred(categorie) {
 
-async function getCategories(url) {
-    let rep = await fetch("http://localhost:5678/api/categories");
-    let reponse = await rep.json();
-    return reponse;
-};
+    let allWork = await getWorks("http://localhost:5678/api/works")
+    const itemCard = document.getElementById('gallery');
+    itemCard.innerHTML = "";
+    if (!categorie) {
+        return generateCard();
+    }
+    if (categorie === "Objets") {
+        let dataFiltred = allWork.filter(function (data) {
+            return data.category.name == "Objets";
+        });
+        console.log(dataFiltred);
+        for (let i = 0; i <= dataFiltred.length; i++) {
+            itemCard.innerHTML += `
+    
+                <figure class="card-gallery">
+                    <img crossorigin="anonymous" src="${dataFiltred[i].imageUrl}" alt="${dataFiltred[i].title}" />
+                    <figcaption>${dataFiltred[i].title}</figcaption>
+                </figure>`
 
-async function generateCardFiltred(filter) {
-
-    let categoriesFiltred = await getCategories("http://localhost:5678/api/categories")
-
-    for (let i = 0; i < categoriesFiltred.length; i++) {
-        const itemcard = document.getElementById('gallery');
-        itemcard.innerHTML += `
-            <figure class="card-gallery">
-            <img crossorigin="anonymous" src="${categoriesFiltred[i].imageUrl}" alt="${categoriesFiltred[i].title}" />
-            <figcaption>${categoriesFiltred[i].title}</figcaption>
-        </figure>`;
-    };
+        }
+    }
 }
 
-const btn = document.querySelector(".btn-filter1");
-btn.addEventListener("click", () => {
-    generateCardFiltred();
-})
 
 
 
-getWorks();
+
+const filtreObjets = document.querySelector(".btn-filter2")
+filtreObjets.addEventListener("click", () => {
+    categoriesFiltred("Objets");
+});
+
 generateCard();
-getCategories();
-
-
-
