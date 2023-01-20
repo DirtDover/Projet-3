@@ -25,7 +25,7 @@ async function generateCard() {
 };
 
 /* Fonction qui trie les éléments par catégorie et qui réaffiche les cards triées */
-async function categoriesFiltred(categorie) {
+async function categoriesFiltred(categorie = "") {
 
     let allWork = await getWorks("http://localhost:5678/api/works")
     const itemCard = document.getElementById('gallery');
