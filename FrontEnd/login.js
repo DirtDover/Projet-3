@@ -48,7 +48,7 @@ async function verifLogin() {
     };
     console.log(test2);
 
-    if (response.status = 200) {
+    if (response.status === 200) {
         location.href = "index.html"
     };
 

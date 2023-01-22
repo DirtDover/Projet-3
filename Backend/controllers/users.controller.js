@@ -36,11 +36,11 @@ exports.login = async (req, res) => {
 		}
 		return res.status(200).json({
 			userId: user.id,
-			token: "Test" /*jwt.sign(
+			token: jwt.sign(
 				{ userId: user.id },
 				process.env.TOKEN_SECRET,
 				{ expiresIn: '24h' }
-			)*/
+			)
 		})
 
 	}
