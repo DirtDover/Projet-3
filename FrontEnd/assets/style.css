@@ -327,18 +327,20 @@ footer nav ul {
 
 #login_titre {
 	color: #1D6154;
+	height: 10%;
 }
 
 .container_input {
 	display: flex;
 	flex-direction: column;
 	width: 28%;
-	height: 70%;
+	height: 90%;
 	justify-content: space-evenly;
 	align-items: center;
 }
 
-.input_log {
+.email,
+.password {
 	background-color: #FFFFFF;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border: none;
@@ -346,15 +348,21 @@ footer nav ul {
 	width: 100%;
 }
 
+.erreur_email,
+.erreur_password {
+	color: red;
+	display: none;
+}
+
 .input_p2 {
-	margin-bottom: -50px;
-	margin-left: -195px;
+	margin-bottom: -35px;
+	margin-left: -190px;
 	font-size: 14px;
 }
 
 .input_p1 {
-	margin-bottom: -50px;
-	margin-left: -245px;
+	margin-bottom: -35px;
+	margin-left: -240px;
 	font-size: 14px;
 }
 

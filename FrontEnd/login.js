@@ -1,21 +1,57 @@
-function login() {
-    const submit = document.querySelector(".btn_login");
-    submit.addEventListener("submit", function () {
-        let username = document.getElementById("e_mail");
-        let password = document.getElementById("password");
+/* Appel du bouton*/
+const login = document.querySelector(".btn_login")
+login.addEventListener("click", () => {
+    verifLogin();
+});
 
-        if (username === "sophie.bluel@test.tld" && password === "S0phie") {
-            console.log("bravo")
-            return true
-            window.open(index.html)
-        } else {
-            alert("Identifiant faux");
-        }
+async function verifLogin() {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const mdpRegex = /^[a-zA-Z] [\w-]+$/;
 
-    })
-}
+    let emailValue = document.querySelector('.email');
+    let passwordValue = document.querySelector('.password');
 
-login();
+    if (!emailRegex.test(emailValue.value) || emailValue.value === "") {
+        document.querySelector('.erreur_email').style.display = "block";
+
+    } else if (!passwordValue.value) {
+        document.querySelector('.erreur_email').style.display = "none";
+        document.querySelector('.erreur_password').style.display = "block";
+
+    } else {
+        document.querySelector('.erreur_password').style.display = "none";
+    }
+
+    let loginInfo = {
+        email: emailValue.value,
+        password: passwordValue.value
+    }
+
+    const response = await fetch("http://localhost:5678/api/users/login", {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(loginInfo),
+
+    });
+
+    const test2 = await response.json();
+
+    if (response.status !== 200) {
+        document.querySelector('.erreur_password').style.display = "block";
+    };
+    console.log(test2);
+
+    if (response.status = 200) {
+        location.href = "index.html"
+    };
 
 
+};
 
