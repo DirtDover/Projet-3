@@ -42,35 +42,10 @@ async function verifLogin() {
 
 
     });
-
-
-    let key = window.localStorage.getItem("response");
-    if (key === null) {
-
-        const response = await fetch("http://localhost:5678/api/users/login", {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(loginInfo),
-
-
-
-        });
-        const test2 = await response.json();
-        window.localStorage.setItem("test2", id);
-
-    } else {
-        test2 = await response.json();
-    }
-
-
     let test2 = await response.json();
+
+    window.localStorage.setItem("idKey", test2);
+
 
     if (response.status !== 200) {
         document.querySelector('.erreur_password').style.display = "block";
@@ -78,7 +53,7 @@ async function verifLogin() {
 
 
     if (response.status === 200) {
-        location.href = "index.html"
+        location.href = "index_edited.html"
     };
 
 
