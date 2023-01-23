@@ -73,6 +73,10 @@ async function categoriesFiltred(categorie = "") {
                 </figure>`
         }
     }
+    else {
+
+        itemCard.innerHTML += `Desole la categorie selectionee n'existe pas`
+    }
 }
 
 
