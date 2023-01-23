@@ -104,5 +104,5 @@ filtreHotel.addEventListener("click", () => {
     categoriesFiltred("Hotels & restaurants");
 });
 
-/* Création de la page de connection */
+/* Création de la modale */
 
