@@ -294,8 +294,11 @@ footer nav ul {
 .btn-container {
 	display: flex;
 	flex-direction: row;
-	width: 90%;
-	height: 40%;
+	justify-content: space-evenly;
+	margin-left: 150px;
+	width: 70%;
+	height: 37px;
+	margin-bottom: 80px;
 }
 
 .btn-filter1,
@@ -303,9 +306,22 @@ footer nav ul {
 .btn-filter3,
 .btn-filter4 {
 	display: flex;
-	width: 20%;
-	height: 40%;
+	width: 17%;
+	height: 100%;
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 60px;
+	border-color: #1D6154;
+	background-color: #FFFEF8;
+}
+
+.btn-filter1:hover,
+.btn-filter2:hover,
+.btn-filter3:hover,
+.btn-filter4:hover {
+	background-color: #1D6154;
+
 }
 
 /* Css pour Login*/
