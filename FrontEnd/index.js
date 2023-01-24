@@ -114,7 +114,8 @@ const openModal = function (e) {
     modal.style.display = null
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-modal', 'true')
-    modal = target
+
+    generateCard2(e)
     modal.addEventListener("click", closeModal)
     modal.querySelector('.js-btn-close').addEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
@@ -135,9 +136,6 @@ const stopPropagation = function (e) {
     e.stopPropagation()
 }
 
-
-
-
 document.querySelectorAll(".js_modal").forEach(a => {
     a.addEventListener("click", openModal)
 
@@ -148,3 +146,27 @@ window.addEventListener('keydown', function (e) {
         closeModal(e)
     }
 })
+
+async function getWorks() {
+    let rep = await fetch("http://localhost:5678/api/works");
+    let reponse = await rep.json();
+    return reponse;
+};
+
+/* Fonction pour créer chaque Card de chaque élément récuper de l'API*/
+async function generateCard2() {
+
+    let allWork = await getWorks("http://localhost:5678/api/works")
+
+    for (let i = 0; i < allWork.length; i++) {
+
+        const itemCard = document.getElementById('card_modal');
+
+        itemCard.innerHTML += `
+
+            <figure id="card_modal">
+                <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
+                <figcaption>"Editer"</figcaption>
+            </figure>`;
+    };
+};
