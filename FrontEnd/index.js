@@ -123,10 +123,12 @@ const openModal = function (e) {
 
 const closeModal = function (e) {
     if (modal === null) return
+    const itemCard = document.getElementById('card_container');
+    itemCard.innerHTML = ""
     modal.style.display = "none"
     modal.setAttribute('aria-hidden', 'true')
     modal.removeAttribute('aria-modal')
-    modal.removeeventListener('click', closeModal)
+    modal.removeEventListener('click', closeModal)
     modal.querySelector('.js-btn-close').removeEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     modal = null
@@ -160,13 +162,13 @@ async function generateCard2() {
 
     for (let i = 0; i < allWork.length; i++) {
 
-        const itemCard = document.getElementById('card_modal');
+        const itemCard = document.getElementById('card_container');
 
         itemCard.innerHTML += `
 
             <figure id="card_modal">
                 <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
-                <figcaption>"Editer"</figcaption>
+                <figcaption><a href="#">Editer</a></figcaption>
             </figure>`;
     };
 };

@@ -332,6 +332,39 @@ footer nav ul {
 	width: 1440px;
 }
 
+.edition_container {
+	background-color: black;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn_edit {
+	border-radius: 60px;
+	height: 60%;
+	width: 35%;
+	margin-left: 20px;
+}
+
+.barre_edition {
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+}
+
+.fa-regular {
+	color: #FFFFFF;
+	height: 20px;
+	width: 20px;
+}
+
 .container_gen {
 	width: 1000px;
 	height: 500px;
@@ -411,6 +444,8 @@ footer nav ul {
 
 /* Css pour Modal*/
 
+
+
 .modal_container {
 	position: fixed;
 	top: 0;
@@ -426,7 +461,7 @@ footer nav ul {
 
 .modal_wrapper {
 	width: 600px;
-	height: 600px;
+	height: 700px;
 	max-width: 100vw;
 	max-height: 100vh;
 	padding: 20px;
@@ -438,21 +473,64 @@ footer nav ul {
 }
 
 .js-btn-close {
-	width: 4%;
-	height: 4%;
+	width: 5%;
+	height: 5%;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin-left: 500px;
+	border-color: #FFFFFF;
+	border-width: 0px;
 }
 
-#card_modal {
-	width: 90%;
+#cross {
+	color: black;
+	width: 90px;
+	height: 90px;
+}
+
+#title_modal {
+	color: black;
+	font-style: normal;
+	font-weight: 400;
+}
+
+#card_container {
+	width: 70%;
 	height: 70%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: space-evenly;
+	margin-top: 50px;
+	border-bottom: 1px solid #b3b3b3;
+
 }
 
 #card_modal img {
-	width: 40px;
-	height: 40px;
+	width: 80px;
+	height: 100px;
+}
+
+figcaption a {
+	text-decoration: none;
+	color: black;
+}
+
+#btn_ajout {
+	background-color: #1D6154;
+	border-radius: 60px;
+	width: 50%;
+	height: 8%;
+	justify-content: center;
+	align-items: center;
+	color: #FFFFFF;
+	border: none;
+	margin-top: 20px;
+	margin-bottom: 50px;
+
+}
+
+.suppr {
+	color: red;
 }
