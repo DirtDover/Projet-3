@@ -9,11 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <meta name="description" content="">
     <link rel="stylesheet" href="/FrontEnd/assets/style.css">
 </head>
 
 <body>
+    <div class="edition_container">
+        <div class="barre_edition">
+            <i id="edit_icon" class="fa-regular fa-pen-to-square"></i>
+            <p>Mode édition</p>
+            <button class="btn_edit">publier les changements</button>
+        </div>
+    </div>
     <header>
         <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
         <nav>
@@ -54,13 +62,13 @@
             <aside id="modal1" class="modal_container" aria-hidden="true" role="dialog" aria-labelledby="title_modal"
                 style="display: none;">
                 <div class="modal_wrapper js-modal-stop">
-                    <button class="js-btn-close"> <i class="fa-regular fa-circle-xmark"></i></button>
+                    <button class="js-btn-close">
+                        <i id="cross" class="fa-solid fa-xmark"></i>
+                    </button>
                     <h1 id="title_modal">Galerie photo</h1>
-                    <div id="card_modal">
-
-                    </div>
-                    <button>Ajouter une photo</button>
-                    <a href="#">Supprimer la galerie</a>
+                    <div id="card_container"></div>
+                    <button id="btn_ajout">Ajouter une photo</button>
+                    <a href="#" class="suppr">Supprimer la galerie</a>
                 </div>
             </aside>
             <div class="gallery" id="gallery">
