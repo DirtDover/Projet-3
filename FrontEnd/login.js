@@ -20,41 +20,48 @@ async function verifLogin() {
 
     } else {
         document.querySelector('.erreur_password').style.display = "none";
+
+        let loginInfo = {
+            email: emailValue.value,
+            password: passwordValue.value
+        }
+
+        const response = await fetch("http://localhost:5678/api/users/login", {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(loginInfo),
+
+
+
+        });
+        let test2 = await response.json();
+        console.log(test2, "coucou");
+        window.localStorage.setItem("token", test2.token);
+
+        if (response.status !== 200) {
+            document.querySelector('.erreur_password').style.display = "block";
+        };
+
+
+        if (response.status === 200) {
+            location.href = "index_edited.html"
+        };
+
     }
 
-    let loginInfo = {
-        email: emailValue.value,
-        password: passwordValue.value
-    }
-
-    const response = await fetch("http://localhost:5678/api/users/login", {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(loginInfo),
 
 
 
-    });
-    let test2 = await response.json();
-
-    window.localStorage.setItem("idKey", test2);
 
 
-    if (response.status !== 200) {
-        document.querySelector('.erreur_password').style.display = "block";
-    };
-
-
-    if (response.status === 200) {
-        location.href = "index_edited.html"
-    };
 
 
 };
