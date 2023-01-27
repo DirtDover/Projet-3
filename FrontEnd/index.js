@@ -226,6 +226,8 @@ async function generateForm() {
     itemCard.innerHTML += `
 
             <form id="form_modal">
+                <label for="myfile">+ Ajouter photo:</label>
+                <input type="file" id="myfile" name="myfile">
                 <p>Titre</p>
                 <input type="text" name="titre">
                 <p>Catégorie</p>
