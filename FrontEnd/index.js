@@ -168,7 +168,54 @@ async function generateCard2() {
 
             <figure id="card_modal">
                 <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
+                <i class="fa-regular fa-trash-can"></i>
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 <figcaption><a href="#">Editer</a></figcaption>
             </figure>`;
     };
 };
+
+/* fonction pour ouvrir la modale d'ajout d'éléments */
+
+let modal2 = null
+
+const openModal2 = function (e) {
+    e.preventDefault()
+    modal2 = document.querySelector(e.target.getAttribute("btn_ajout"))
+    modal2.style.display = null
+    modal2.removeAttribute('aria-hidden')
+    modal2.setAttribute('aria-modal', 'true')
+
+    generateCard2(e)
+    modal2.addEventListener("click", closeModal2)
+    modal2.querySelector('.js-btn-close2').addEventListener('click', closeModal2)
+    modal2.querySelector('.js-modal-stop2').addEventListener('click', stopPropagation2)
+}
+
+const closeModal2 = function (e) {
+    if (modal2 === null) return
+    const itemCard = document.getElementById('form_container');
+    itemCard.innerHTML = ""
+    modal2.style.display = "none"
+    modal2.setAttribute('aria-hidden', 'true')
+    modal2.removeAttribute('aria-modal')
+    modal2.removeEventListener('click', closeModal2)
+    modal2.querySelector('.js-btn-close').removeEventListener('click', closeModal2)
+    modal2.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation2)
+    modal2 = null
+}
+
+const stopPropagation2 = function (e) {
+    e.stopPropagation2()
+}
+
+document.querySelectorAll("btn_ajout").forEach(a => {
+    a.addEventListener("click", openModal2)
+
+})
+
+window.addEventListener('keydown', function (e) {
+    if (e.key === "Escape" || e.key === "Esc") {
+        closeModal2(e)
+    }
+})

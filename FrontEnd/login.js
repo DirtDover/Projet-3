@@ -56,13 +56,5 @@ async function verifLogin() {
         };
 
     }
-
-
-
-
-
-
-
-
 };
 

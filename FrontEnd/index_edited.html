@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <meta name="description" content="">
     <link rel="stylesheet" href="/FrontEnd/assets/style.css">
+    <script src="https://kit.fontawesome.com/127f1efd54.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -50,14 +50,18 @@
             </article>
         </section>
         <section id="portfolio">
-            <h2>Mes Projets </h2>
+            <div class="mes_projets">
+                <h2>Mes Projets</h2>
+                <i id="edit_icon2" class="fa-regular fa-pen-to-square"></i>
+                <a href="#modal1" class="js_modal">Modifier</a>
+            </div>
             <div class="btn-container">
                 <button class="btn-filter1">Tous</button>
                 <button class="btn-filter2">Objet</button>
                 <button class="btn-filter3">Appartements</button>
                 <button class="btn-filter4">Hôtel & restaurants</button>
             </div>
-            <a href="#modal1" class="js_modal">Modifier</a>
+
 
             <aside id="modal1" class="modal_container" aria-hidden="true" role="dialog" aria-labelledby="title_modal"
                 style="display: none;">
@@ -66,9 +70,24 @@
                         <i id="cross" class="fa-solid fa-xmark"></i>
                     </button>
                     <h1 id="title_modal">Galerie photo</h1>
-                    <div id="card_container"></div>
+                    <div id="card_container">
+                        <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                    </div>
+
                     <button id="btn_ajout">Ajouter une photo</button>
                     <a href="#" class="suppr">Supprimer la galerie</a>
+                </div>
+            </aside>
+            <aside id="modal2" class="modal_container2" aria-hidden="true" role="dialog" aria-labelledby="title_modal"
+                style="display: none;">
+                <div class="modal_wrapper2 js-modal-stop2">
+                    <button class="js-btn-close2">
+                        <i id="cross2" class="fa-solid fa-xmark"></i>
+                    </button>
+                    <h1 id="title_modal2">Ajout photo</h1>
+                    <form id="form_container">
+
+                    </form>
                 </div>
             </aside>
             <div class="gallery" id="gallery">
