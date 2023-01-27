@@ -181,12 +181,11 @@ let modal2 = null
 
 const openModal2 = function (e) {
     e.preventDefault()
-    modal2 = document.querySelector(e.target.getAttribute("btn_ajout"))
+    modal2 = document.querySelector(e.target.getAttribute("href"))
     modal2.style.display = null
     modal2.removeAttribute('aria-hidden')
     modal2.setAttribute('aria-modal', 'true')
-
-    generateCard2(e)
+    generateForm(e)
     modal2.addEventListener("click", closeModal2)
     modal2.querySelector('.js-btn-close2').addEventListener('click', closeModal2)
     modal2.querySelector('.js-modal-stop2').addEventListener('click', stopPropagation2)
@@ -200,8 +199,8 @@ const closeModal2 = function (e) {
     modal2.setAttribute('aria-hidden', 'true')
     modal2.removeAttribute('aria-modal')
     modal2.removeEventListener('click', closeModal2)
-    modal2.querySelector('.js-btn-close').removeEventListener('click', closeModal2)
-    modal2.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation2)
+    modal2.querySelector('.js-btn-close2').removeEventListener('click', closeModal2)
+    modal2.querySelector('.js-modal-stop2').removeEventListener('click', stopPropagation2)
     modal2 = null
 }
 
@@ -209,7 +208,7 @@ const stopPropagation2 = function (e) {
     e.stopPropagation2()
 }
 
-document.querySelectorAll("btn_ajout").forEach(a => {
+document.querySelectorAll(".js_modal2").forEach(a => {
     a.addEventListener("click", openModal2)
 
 })
@@ -219,3 +218,23 @@ window.addEventListener('keydown', function (e) {
         closeModal2(e)
     }
 })
+
+async function generateForm() {
+
+    const itemCard = document.getElementById('form_container');
+
+    itemCard.innerHTML += `
+
+            <form id="form_modal">
+                <p>Titre</p>
+                <input type="text" name="titre">
+                <p>Catégorie</p>
+                <select name="catégories" id="categorie">
+                    <option value="objet">Objet</option>
+                    <option value="Hôtel & restaurants">Hôtel & restaurants</option>
+                    <option value="appartements">Appartements</option>
+                </select>
+                <input type="submit" value="Valider"/>
+            </form>`;
+};
+
