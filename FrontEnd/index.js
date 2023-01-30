@@ -170,10 +170,36 @@ async function generateCard2() {
                 <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
                 <i class="fa-regular fa-trash-can"></i>
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <figcaption><a href="#">Editer</a></figcaption>
+                <figcaption class="suppr"><a href="#">Editer${allWork[i].id}</a></figcaption>
             </figure>`;
     };
 };
+
+/* Delete elements de la modale*/
+
+
+
+const deleteWork = document.querySelector(".suppr")
+deleteWork.addEventListener("click", () => {
+    deletingWork();
+});
+
+const deletingWork = async function (e) {
+    const response = await fetch("http://localhost:5678/api/works/1", {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
+        },
+    })
+        .then(res => console.log(res))
+
+    let test = await response.json();
+    console.log(test);
+};
+
+
+
 
 /* fonction pour ouvrir la modale d'ajout d'éléments */
 
@@ -225,18 +251,22 @@ async function generateForm() {
 
     itemCard.innerHTML += `
 
-            <form id="form_modal">
-                <label for="myfile">+ Ajouter photo:</label>
-                <input type="file" id="myfile" name="myfile">
-                <p>Titre</p>
-                <input type="text" name="titre">
-                <p>Catégorie</p>
+            <form id="form_container">
+                <div class="ajout_img">
+                    <i class="fa-solid fa-image fa-4x"></i>
+                    <input type="file" id="myfile" name="myfile">
+                    <p>jpg. png 4mo max</p>
+                </div>
+                <p class="titre_form">Titre</p>
+                <input type="text" name="titre" class="titre_input">
+                <p class="categorie_form">Catégorie</p>
                 <select name="catégories" id="categorie">
                     <option value="objet">Objet</option>
                     <option value="Hôtel & restaurants">Hôtel & restaurants</option>
                     <option value="appartements">Appartements</option>
                 </select>
-                <input type="submit" value="Valider"/>
-            </form>`;
+            </form>    
+        <button id="btn_form">Valider</button>`
+        ;
 };
 
