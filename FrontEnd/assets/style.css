@@ -650,12 +650,12 @@ figcaption a {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	border-bottom: 2px solid red;
+	border-bottom: 1px solid #b3b3b3;
 }
 
 .ajout_img {
 	width: 80%;
-	height: 30%;
+	height: 40%;
 	background-color: #E8F1F6;
 	border-radius: 3px;
 	display: flex;
@@ -673,26 +673,61 @@ figcaption a {
 	color: #E8F1F6;
 }
 
-#myfile {
-	background-color: #cbd6dc;
-	border-radius: 50px;
+.img_label {
 	margin-top: 20px;
-	width: 80%;
+	margin-bottom: 30px;
+	cursor: pointer;
+	background-color: #cbd6dc;
+	color: #306685;
+	border-radius: 50px;
 	height: 15%;
-	margin-bottom: 10px;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#myfile {
+	display: none;
+}
+
+.titre_form {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	margin-left: -360px;
 }
 
 .titre_input {
-	height: 7%;
+	height: 10%;
 	width: 80%;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+}
 
+.categorie_form {
+	margin-top: 15px;
+	margin-left: -320px;
+	margin-bottom: 15px;
 }
 
 #categorie {
-	height: 7%;
+	height: 10%;
 	width: 80%;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#btn_form {
-	color: #a7a7a7;
+.btn_form {
+	color: white;
+	margin-top: 30px;
+	border-radius: 60px;
+	border: none;
+	background-color: #a7a7a7;
+	width: 30%;
+	height: 5%;
+}
+
+.btn_form a {
+	text-decoration: none;
+	color: white;
 }

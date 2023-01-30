@@ -198,6 +198,23 @@ const deletingWork = async function (e) {
     console.log(test);
 };
 
+/* fonction pour Post un Work */
+
+const ajoutElement = document.querySelector(".btn_form")
+ajoutElement.addEventListener("click", () => {
+    postWork();
+});
+
+/*const postWork = async function (e) {
+    const response = await fectch("http://localhost:5678/api/works", {
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/json',
+            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
+        },
+        body:, 
+    })
+}*/
 
 
 
@@ -254,6 +271,7 @@ async function generateForm() {
             <form id="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
+                    <label for="file" class="img_label">+ ajouter photo</label>
                     <input type="file" id="myfile" name="myfile">
                     <p>jpg. png 4mo max</p>
                 </div>
@@ -265,8 +283,7 @@ async function generateForm() {
                     <option value="Hôtel & restaurants">Hôtel & restaurants</option>
                     <option value="appartements">Appartements</option>
                 </select>
-            </form>    
-        <button id="btn_form">Valider</button>`
+            </form>`
         ;
 };
 
