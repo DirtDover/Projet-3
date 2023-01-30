@@ -501,6 +501,7 @@ footer nav ul {
 	margin-top: 8px;
 	color: #FFFFFF;
 	background-color: black;
+	border-radius: 2px;
 }
 
 .fa-arrows-up-down-left-right {
@@ -510,6 +511,7 @@ footer nav ul {
 	margin-left: -45px;
 	margin-top: 8px;
 	background-color: black;
+	border-radius: 2px;
 }
 
 .js-btn-close {
@@ -572,11 +574,16 @@ figcaption a {
 	border: none;
 	margin-top: 20px;
 	margin-bottom: 50px;
+}
 
+#btn_ajout a {
+	text-decoration: none;
+	color: white;
 }
 
 .suppr {
 	color: red;
+	text-decoration: none;
 }
 
 /* Css pour Modal2*/
@@ -635,4 +642,57 @@ figcaption a {
 	border-color: #FFFFFF;
 	border-width: 0px;
 	background-color: #FFFFFF;
+}
+
+#form_container {
+	width: 80%;
+	height: 70%;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	border-bottom: 2px solid red;
+}
+
+.ajout_img {
+	width: 80%;
+	height: 30%;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.fa-image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	background-color: #b9c5cc;
+	color: #E8F1F6;
+}
+
+#myfile {
+	background-color: #cbd6dc;
+	border-radius: 50px;
+	margin-top: 20px;
+	width: 80%;
+	height: 15%;
+	margin-bottom: 10px;
+}
+
+.titre_input {
+	height: 7%;
+	width: 80%;
+
+}
+
+#categorie {
+	height: 7%;
+	width: 80%;
+}
+
+#btn_form {
+	color: #a7a7a7;
 }
