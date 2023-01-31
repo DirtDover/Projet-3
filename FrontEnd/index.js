@@ -198,26 +198,6 @@ const deletingWork = async function (e) {
     console.log(test);
 };
 
-/* fonction pour Post un Work */
-
-const ajoutElement = document.querySelector(".btn_form")
-ajoutElement.addEventListener("click", () => {
-    postWork();
-});
-
-/*const postWork = async function (e) {
-    const response = await fectch("http://localhost:5678/api/works", {
-        method: 'POST',
-        headers: {
-            'content-Type': 'application/json',
-            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
-        },
-        body:, 
-    })
-}*/
-
-
-
 /* fonction pour ouvrir la modale 2 d'ajout d'éléments */
 
 let modal2 = null
@@ -269,7 +249,7 @@ async function generateForm() {
 
     itemCard.innerHTML += `
 
-            <form id="form_container">
+            <form id="form_container" class="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
                     <label for="file" class="img_label">+ ajouter photo</label>
@@ -277,7 +257,7 @@ async function generateForm() {
                     <p>jpg. png 4mo max</p>
                 </div>
                 <p class="titre_form">Titre</p>
-                <input type="text" name="titre" class="titre_input">
+                <input type="text" name="titre" id="titre_input">
                 <p class="categorie_form">Catégorie</p>
                 <select name="catégories" id="categorie">
                     <option value="objet">Objet</option>
@@ -288,4 +268,36 @@ async function generateForm() {
             </form>`
         ;
 };
+
+/* fonction pour Post un Work */
+
+const formValue = {
+    image: document.querySelector("#myfile").value,
+    title: document.querySelector("#titre_input").value,
+    categorie: document.querySelector("#categorie").value,
+}
+
+localStorage.setItem("formValue", JSON.stringify(formValue))
+
+const postWork = async function (e) {
+
+    const response = await fetch("http://localhost:5678/api/works", {
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/json',
+            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
+        },
+        body: JSON.stringify(localStorage.getItem(formValue)),
+    });
+
+    let test2 = await response.json();
+    console.log(test2);
+};
+
+const ajoutElement = document.querySelector(".btn_form")
+ajoutElement.addEventListener("click", () => {
+    postWork();
+});
+
+
 

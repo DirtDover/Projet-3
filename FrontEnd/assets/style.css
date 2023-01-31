@@ -736,9 +736,7 @@ figcaption a {
 	align-items: center;
 }
 
-#myfile {
-	display: none;
-}
+#myfile {}
 
 .titre_form {
 	margin-top: 15px;
@@ -746,7 +744,7 @@ figcaption a {
 	margin-left: -360px;
 }
 
-.titre_input {
+#titre_input {
 	height: 10%;
 	width: 80%;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
