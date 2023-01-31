@@ -168,18 +168,25 @@ async function generateCard2() {
 
             <figure id="card_modal">
                 <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
-                <i class="fa-regular fa-trash-can"></i>
+                <button class="trash">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 <figcaption class="suppr_test"><a href="#">éditer</a></figcaption>
             </figure>`;
     };
+
+    const deleteWork = document.querySelector(".trash")
+    deleteWork.addEventListener("click", () => {
+        deletingWork();
+    });
 };
 
 /* Delete elements de la modale*/
 
 
 
-const deleteWork = document.querySelector(".suppr_total")
+const deleteWork = document.querySelector(".trash")
 deleteWork.addEventListener("click", () => {
     deletingWork();
 });
@@ -249,11 +256,11 @@ async function generateForm() {
 
     itemCard.innerHTML += `
 
-            <form id="form_container" class="form_container">
+            <form enctype="multipart/form-data" method="post" id="form_container" class="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
                     <label for="file" class="img_label">+ ajouter photo</label>
-                    <input type="file" id="myfile" name="myfile">
+                    <input type="file" id="myfile" name="myfile" accept="image/*">
                     <p>jpg. png 4mo max</p>
                 </div>
                 <p class="titre_form">Titre</p>
@@ -271,33 +278,38 @@ async function generateForm() {
 
 /* fonction pour Post un Work */
 
-const formValue = {
-    image: document.querySelector("#myfile").value,
-    title: document.querySelector("#titre_input").value,
-    categorie: document.querySelector("#categorie").value,
-}
-
-localStorage.setItem("formValue", JSON.stringify(formValue))
+const ajoutElement = document.querySelector(".btn_form")
+ajoutElement.addEventListener("click", () => {
+    postWork();
+});
 
 const postWork = async function (e) {
 
+    const images = {
+        filename: "la-balisiere.png"
+    }
+    console.log(images)
+    const formValue = {
+        image: images,
+        title: document.querySelector("#titre_input").value,
+        categorie: document.querySelector("#categorie").value,
+    }
+    const test = JSON.stringify(formValue)
+    console.log(test)
     const response = await fetch("http://localhost:5678/api/works", {
         method: 'POST',
         headers: {
             'content-Type': 'application/json',
             'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
         },
-        body: JSON.stringify(localStorage.getItem(formValue)),
+        body: formValue
     });
 
     let test2 = await response.json();
     console.log(test2);
 };
 
-const ajoutElement = document.querySelector(".btn_form")
-ajoutElement.addEventListener("click", () => {
-    postWork();
-});
+
 
 
 
