@@ -15,7 +15,7 @@ async function verifLogin() {
     if (!emailRegex.test(emailValue.value) || emailValue.value === "") {
         document.querySelector('.erreur_email').style.display = "block";
 
-    } else if (!passwordValue.value) {
+    } else if (!passwordValue.value || passwordValue.value === "") {
         document.querySelector('.erreur_email').style.display = "none";
         document.querySelector('.erreur_password').style.display = "block";
 
@@ -44,7 +44,7 @@ async function verifLogin() {
 
         });
         let test2 = await response.json();
-        console.log(test2, "coucou");
+
         window.localStorage.setItem("token", test2.token);
 
         if (response.status !== 200) {
@@ -55,12 +55,6 @@ async function verifLogin() {
         if (response.status === 200) {
             location.href = "index_edited.html"
         };
-
-        let btn = document.querySelector(".btn-container")
-        if (response.status === 200) {
-            btn.style.display = null
-        };
-
     }
 };
 

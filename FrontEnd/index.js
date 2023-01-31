@@ -170,7 +170,7 @@ async function generateCard2() {
                 <img crossorigin="anonymous" src="${allWork[i].imageUrl}" alt="${allWork[i].title}" />
                 <i class="fa-regular fa-trash-can"></i>
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <figcaption class="suppr"><a href="#">Editer${allWork[i].id}</a></figcaption>
+                <figcaption class="suppr_test"><a href="#">éditer</a></figcaption>
             </figure>`;
     };
 };
@@ -179,13 +179,13 @@ async function generateCard2() {
 
 
 
-const deleteWork = document.querySelector(".suppr")
+const deleteWork = document.querySelector(".suppr_total")
 deleteWork.addEventListener("click", () => {
     deletingWork();
 });
 
 const deletingWork = async function (e) {
-    const response = await fetch("http://localhost:5678/api/works/1", {
+    const response = await fetch("http://localhost:5678/api/works/id", {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -218,7 +218,7 @@ ajoutElement.addEventListener("click", () => {
 
 
 
-/* fonction pour ouvrir la modale 1 d'ajout d'éléments */
+/* fonction pour ouvrir la modale 2 d'ajout d'éléments */
 
 let modal2 = null
 
@@ -231,6 +231,7 @@ const openModal2 = function (e) {
     generateForm(e)
     modal2.addEventListener("click", closeModal2)
     modal2.querySelector('.js-btn-close2').addEventListener('click', closeModal2)
+    modal2.querySelector('.back_close_btn').addEventListener('click', closeModal2)
     modal2.querySelector('.js-modal-stop2').addEventListener('click', stopPropagation2)
 }
 
@@ -248,7 +249,7 @@ const closeModal2 = function (e) {
 }
 
 const stopPropagation2 = function (e) {
-    e.stopPropagation2()
+    e.stopPropagation(e)
 }
 
 document.querySelectorAll(".js_modal2").forEach(a => {
@@ -283,6 +284,7 @@ async function generateForm() {
                     <option value="Hôtel & restaurants">Hôtel & restaurants</option>
                     <option value="appartements">Appartements</option>
                 </select>
+                <p class="erreur_form">Champs vide ou invalide</p>
             </form>`
         ;
 };
