@@ -174,25 +174,23 @@ async function generateCard2() {
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
                 <figcaption class="suppr_test"><a href="#">éditer</a></figcaption>
             </figure>`;
+
     };
 
-    const deleteWork = document.querySelector(".trash")
-    deleteWork.addEventListener("click", () => {
-        deletingWork();
-    });
+    const deleteWork = document.getElementsByClassName("trash")
+    for (let i = 0; i < deleteWork.length; i++) {
+
+        deleteWork[i].addEventListener("click", () => {
+            deletingWork(i + 1);
+        });
+    }
 };
 
 /* Delete elements de la modale*/
 
+const deletingWork = async function (i) {
 
-
-const deleteWork = document.querySelector(".trash")
-deleteWork.addEventListener("click", () => {
-    deletingWork();
-});
-
-const deletingWork = async function (e) {
-    const response = await fetch("http://localhost:5678/api/works/id", {
+    const response = await fetch("http://localhost:5678/api/works/" + i, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -285,24 +283,25 @@ ajoutElement.addEventListener("click", () => {
 
 const postWork = async function (e) {
 
-    const images = {
-        filename: "la-balisiere.png"
+    let formData = new FormData(document.getElementById('form_container'));
+    /* formData.append('image', document.querySelector("#myfile").files[0]);
+     formData.append('title', document.querySelector("#titre_input").value);
+     formData.append('categorie', document.querySelector("#categorie").value);
+     formData.append("categorie2", "test")*/
+    // Log the key/value pairs
+    for (var pair of formData.entries()) {
+        console.log(pair[1]);
     }
-    console.log(images)
-    const formValue = {
-        image: images,
-        title: document.querySelector("#titre_input").value,
-        categorie: document.querySelector("#categorie").value,
-    }
-    const test = JSON.stringify(formValue)
-    console.log(test)
+    window.localStorage.setItem("formData", formData);
+
     const response = await fetch("http://localhost:5678/api/works", {
         method: 'POST',
         headers: {
             'content-Type': 'application/json',
             'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
         },
-        body: formValue
+        body: formData,
+        file: document.querySelector("#myfile").files[0]
     });
 
     let test2 = await response.json();
