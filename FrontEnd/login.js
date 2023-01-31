@@ -4,6 +4,7 @@ login.addEventListener("click", () => {
     verifLogin();
 });
 
+
 async function verifLogin() {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const mdpRegex = /^[a-zA-Z] [\w-]+$/;
@@ -53,6 +54,11 @@ async function verifLogin() {
 
         if (response.status === 200) {
             location.href = "index_edited.html"
+        };
+
+        let btn = document.querySelector(".btn-container")
+        if (response.status === 200) {
+            btn.style.display = null
         };
 
     }

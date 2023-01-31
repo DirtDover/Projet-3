@@ -109,6 +109,7 @@ section {
 
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
 
 ol,
@@ -295,25 +296,43 @@ footer nav ul {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	margin-left: 150px;
-	width: 70%;
+	margin-left: 200px;
+	width: 60%;
 	height: 37px;
 	margin-bottom: 80px;
 }
 
 .btn-filter1,
-.btn-filter2,
+.btn-filter2 {
+	display: flex;
+	width: 15%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 60px;
+	border-color: #1D6154;
+	color: #1D6154;
+	background-color: #FFFEF8;
+	margin-left: 0px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
 .btn-filter3,
 .btn-filter4 {
 	display: flex;
-	width: 17%;
+	width: 25%;
 	height: 100%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	border-radius: 60px;
 	border-color: #1D6154;
+	color: #1D6154;
 	background-color: #FFFEF8;
+	margin-left: 0px;
+	font-size: 16px;
+	font-weight: 700;
 }
 
 .btn-filter1:hover,
@@ -321,6 +340,7 @@ footer nav ul {
 .btn-filter3:hover,
 .btn-filter4:hover {
 	background-color: #1D6154;
+	color: white;
 
 }
 
@@ -347,6 +367,12 @@ footer nav ul {
 	height: 60%;
 	width: 35%;
 	margin-left: 20px;
+	cursor: pointer;
+}
+
+.texte_edition a {
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
 .barre_edition {
@@ -451,7 +477,8 @@ footer nav ul {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: flex-start
+	align-items: flex-start;
+	margin-bottom: 30px;
 }
 
 #edit_icon2 {

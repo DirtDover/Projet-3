@@ -218,7 +218,7 @@ ajoutElement.addEventListener("click", () => {
 
 
 
-/* fonction pour ouvrir la modale d'ajout d'éléments */
+/* fonction pour ouvrir la modale 1 d'ajout d'éléments */
 
 let modal2 = null
 
