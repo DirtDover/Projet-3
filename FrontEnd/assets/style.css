@@ -540,9 +540,9 @@ footer nav ul {
 	position: absolute;
 	z-index: 2;
 	margin-top: 7px;
-	margin-left: -28px;
-	width: 1.5%;
-	height: 2.2%;
+	margin-left: -30px;
+	width: 15px;
+	height: 20px;
 
 }
 
@@ -554,10 +554,10 @@ footer nav ul {
 	margin-top: 8px;
 	background-color: black;
 	border-radius: 2px;
-	width: 1%;
-	height: 1%;
-	padding-top: 5px;
-	padding-left: 3px;
+	width: 20px;
+	height: 20px;
+	padding-top: 3px;
+	padding-left: -3px;
 }
 
 .js-btn-close {
@@ -579,6 +579,7 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 }
 
 #title_modal {
@@ -636,6 +637,10 @@ figcaption a {
 #btn_ajout a {
 	text-decoration: none;
 	color: white;
+}
+
+.suppr_test {
+	margin-top: 5px;
 }
 
 .suppr_total {
@@ -736,8 +741,8 @@ figcaption a {
 	color: #E8F1F6;
 }
 
-.img_label {
-	margin-top: 20px;
+.label_img {
+	margin-top: 30px;
 	margin-bottom: 30px;
 	cursor: pointer;
 	background-color: #cbd6dc;
@@ -750,7 +755,11 @@ figcaption a {
 	align-items: center;
 }
 
-#myfile {}
+.mo_max {
+	margin-top: 12px;
+	font-size: 10px;
+}
+
 
 .titre_form {
 	margin-top: 15px;
@@ -778,7 +787,7 @@ figcaption a {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-.btn_form {
+#btn_form {
 	color: white;
 	margin-top: 30px;
 	border-radius: 60px;
@@ -786,6 +795,7 @@ figcaption a {
 	background-color: #a7a7a7;
 	width: 30%;
 	height: 5%;
+	cursor: pointer;
 }
 
 .btn_form a {

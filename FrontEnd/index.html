@@ -3,17 +3,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
+	<title>Sophie Bluel - Architecte d'intérieur - Mode Edition</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="/FrontEnd/assets/style.css">
+	<script src="https://kit.fontawesome.com/127f1efd54.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+	<div class="edition_container"></div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
@@ -42,13 +44,50 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets </h2>
-			<div class="btn-container" style="display:flex;">
+			<div class="mes_projets">
+				<h2>Mes Projets</h2>
+
+			</div>
+			<div class="btn-container">
 				<button class="btn-filter1">Tous</button>
 				<button class="btn-filter2">Objet</button>
 				<button class="btn-filter3">Appartements</button>
 				<button class="btn-filter4">Hôtel & restaurants</button>
 			</div>
+
+
+			<aside id="modal1" class="modal_container" aria-hidden="true" role="dialog" aria-labelledby="title_modal"
+				style="display: none;">
+				<div class="modal_wrapper js-modal-stop">
+					<button class="js-btn-close">
+						<i id="cross" class="fa-solid fa-xmark"></i>
+					</button>
+					<h1 id="title_modal">Galerie photo</h1>
+					<div id="card_container">
+					</div>
+
+					<button id="btn_ajout"><a href="#modal2" class="js_modal2">Ajouter une photo</a></button>
+					<a href="#" class="suppr_total">Supprimer la galerie</a>
+				</div>
+			</aside>
+			<aside id="modal2" class="modal_container2" aria-hidden="true" role="dialog" aria-labelledby="title_modal"
+				style="display: none;">
+				<div class="modal_wrapper2 js-modal-stop2">
+					<div class="back_close_btn">
+						<button class="js-btn-close2">
+							<i id="cross2" class="fa-solid fa-xmark"></i>
+						</button>
+						<button class="back_btn">
+							<i class="fa-solid fa-arrow-left"></i>
+						</button>
+					</div>
+					<h1 id="title_modal2">Ajout photo</h1>
+					<form id="form_container">
+
+					</form>
+
+				</div>
+			</aside>
 			<div class="gallery" id="gallery">
 				<!-- <figure>
 					<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
@@ -119,7 +158,6 @@
 		</nav>
 	</footer>
 	<script src="../FrontEnd/index.js"></script>
-	<script src="../FrontEnd/login.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,28 @@
 
+if (window.localStorage.getItem("token")) {
+
+    const bandeau = document.querySelector('.edition_container');
+
+    bandeau.innerHTML += `
+
+    <div class="barre_edition">
+            <i id="edit_icon" class="fa-regular fa-pen-to-square"></i>
+            <p class="texte_edition" class="js_modal"><a href="#modal1">Mode édition</a></p>
+            <button class="btn_edit">publier les changements</button>
+        </div>`;
+
+    document.querySelector('.btn-container').style.display = "none";
+
+    const modif = document.querySelector('.mes_projets');
+
+    modif.innerHTML += `
+
+            <i id="edit_icon2" class="fa-regular fa-pen-to-square"></i>
+			<a href="#modal1" class="js_modal">Modifier</a>`
+
+} else {
+    alert("coucou")
+}
 /* Fonction fetch pour récuperer toutes les data depuis l'API */
 async function getWorks() {
     let rep = await fetch("http://localhost:5678/api/works");
@@ -258,8 +282,8 @@ function generateForm() {
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
                     <input type="file" id="imageUrl" name="imageUrl" accept="image/*" style="display:none" >
-                    <label for="imageUrl">+ Ajouter Photo</label>
-                    <p>jpg. png 4mo max</p>
+                    <label for="imageUrl" class="label_img">+ Ajouter Photo</label>
+                    <p class="mo_max">jpg. png 4mo max</p>
                 </div>
                 <p class="titre_form">Titre</p>
                 <input type="text" name="title" id="titre_input" class="titre_input">
@@ -270,6 +294,7 @@ function generateForm() {
                     <option value="3">Appartements</option>
                 </select>
                 <p class="erreur_form">Champs vide ou invalide</p>
+                <input type="submit" id="btn_form" value="Ajouter">
             </form>`
         ;
 
@@ -277,13 +302,11 @@ function generateForm() {
 
 /* fonction pour Post un Work */
 
-// ENVOI DE FICHIER ===========================================================
-
 // Selecteur + URL
 const form = document.getElementById("form_container");
 const url = "http://localhost:5678/api/works";
 
-// Ajout de l'évenement Submit
+// Ajout de l'événement Submit
 form.addEventListener("submit", function (event) {
 
     // Désactivation du comportement par défaut du bouton
@@ -291,45 +314,41 @@ form.addEventListener("submit", function (event) {
 
     // Récupération des données du formulaire
     const title = form.elements.titre_input.value; // Récupère le titre
-    const imageUrl = form.elements.imageUrl.value; // Récupère l'url de l'image
+    const file = form.elements.imageUrl.files[0]; // Récupère l'image sélectionnée
     const category = form.elements.categorie.value; // Récupère l'id de la catégorie
 
-    // Création d'un nouvel Objet formData qui contient les données du formulaire
-    const data = {
-        "title": title,
-        "imageUrl": imageUrl,
-        "category": category
+    const formData = {};
+    formData["title"] = title;
+    formData["category"] = category;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        formData["image"] = reader.result;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": "Bearer " + window.localStorage.getItem("token")
+            },
+            body: formData
+        })
+            .then(response => {
+                // Vérification du type de contenu de la réponse
+                if (response.headers.get('Content-Type').includes("application/json")) {
+                    return response.json();
+                }
+                throw new Error("Response is not JSON");
+            })
+            .then(data => {
+                console.log("Success:", data);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
     };
-
-    // Contact API en Method POST
-    fetch(url, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
-        },
-        body: JSON.stringify(data)
-    })
-        .then((response) => {
-
-            // Vérification du type de contenu de la réponse
-            if (response.headers.get('Content-Type').includes("application/json")) {
-                return response.json(); // Retourne en JSON si le type est bon
-            }
-            throw new Error("Response is not JSON"); // Retourne une erreur si ce n'est pas le cas
-
-        })
-        .then((data) => {
-            console.log("Success:", data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-
 });
-
-// ============================================================================
-
 
 
 
