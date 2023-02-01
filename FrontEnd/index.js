@@ -248,23 +248,23 @@ window.addEventListener('keydown', function (e) {
     }
 })
 
-async function generateForm() {
+function generateForm() {
 
     const itemCard = document.getElementById('form_container');
 
     itemCard.innerHTML += `
 
-            <form enctype="multipart/form-data" method="post" id="form_container" class="form_container">
+            <form method="post" enctype="multipart/form-data" id="form_container" class="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
-                    <label for="file" class="img_label">+ ajouter photo</label>
-                    <input type="file" id="myfile" name="myfile" accept="image/*">
+                    <input type="file" id="image_upload" name="image_upload" accept="image/*" style="display:none" >
+                    <label for="image_upload">+ Ajouter Photo</label>
                     <p>jpg. png 4mo max</p>
                 </div>
                 <p class="titre_form">Titre</p>
-                <input type="text" name="titre" id="titre_input">
+                <input type="text" name="titre" id="titre_input" class="titre_input">
                 <p class="categorie_form">Catégorie</p>
-                <select name="catégories" id="categorie">
+                <select name="catégories" id="categorie" class="categorie">
                     <option value="objet">Objet</option>
                     <option value="Hôtel & restaurants">Hôtel & restaurants</option>
                     <option value="appartements">Appartements</option>
@@ -272,41 +272,50 @@ async function generateForm() {
                 <p class="erreur_form">Champs vide ou invalide</p>
             </form>`
         ;
+
 };
 
 /* fonction pour Post un Work */
 
-const ajoutElement = document.querySelector(".btn_form")
-ajoutElement.addEventListener("click", () => {
-    postWork();
-});
+const form = document.getElementById('form_container');
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const preDataPost = new FormData(form);
+    const dataPost = new URLSearchParams(preDataPost);
+    console.log([...dataPost])
 
-const postWork = async function (e) {
-
-    let formData = new FormData(document.getElementById('form_container'));
-    /* formData.append('image', document.querySelector("#myfile").files[0]);
-     formData.append('title', document.querySelector("#titre_input").value);
-     formData.append('categorie', document.querySelector("#categorie").value);
-     formData.append("categorie2", "test")*/
-    // Log the key/value pairs
-    for (var pair of formData.entries()) {
-        console.log(pair[1]);
-    }
-    window.localStorage.setItem("formData", formData);
-
-    const response = await fetch("http://localhost:5678/api/works", {
+    fetch("http://localhost:5678/api/works", {
         method: 'POST',
         headers: {
             'content-Type': 'application/json',
             'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
         },
-        body: formData,
-        file: document.querySelector("#myfile").files[0]
-    });
+        body: dataPost,
+    })
+        .then(response => response.json())
 
-    let test2 = await response.json();
-    console.log(test2);
-};
+        .then(data => console.log(data))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
