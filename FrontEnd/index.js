@@ -277,6 +277,64 @@ function generateForm() {
 
 /* fonction pour Post un Work */
 
+// ENVOI DE FICHIER ===========================================================
+
+// Selecteur + URL
+const form = document.getElementById("form_container");
+const url = "http://localhost:5678/api/works";
+
+// Ajout de l'évenement Submit
+form.addEventListener("submit", function (event) {
+
+    // Désactivation du comportement par défaut du bouton
+    event.preventDefault();
+
+    // Récupération des données du formulaire
+    const title = form.elements.titre_input.value; // Récupère le titre
+    const imageUrl = form.elements.imageUrl.value; // Récupère l'url de l'image
+    const category = form.elements.categorie.value; // Récupère l'id de la catégorie
+
+    // Création d'un nouvel Objet formData qui contient les données du formulaire
+    const data = {
+        "title": title,
+        "imageUrl": imageUrl,
+        "category": category
+    };
+
+    // Contact API en Method POST
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
+        },
+        body: JSON.stringify(data)
+    })
+        .then((response) => {
+
+            // Vérification du type de contenu de la réponse
+            if (response.headers.get('Content-Type').includes("application/json")) {
+                return response.json(); // Retourne en JSON si le type est bon
+            }
+            throw new Error("Response is not JSON"); // Retourne une erreur si ce n'est pas le cas
+
+        })
+        .then((data) => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+});
+
+// ============================================================================
+
+
+
+
+
+/*
 var form = document.getElementById("form_container");
 
 form.addEventListener("submit", function (event) {
@@ -311,15 +369,7 @@ form.addEventListener("submit", function (event) {
 });
 
 
-
-
-
-
-
-
-
-
-
+*/
 
 
 // const form = document.getElementById('form_container');
