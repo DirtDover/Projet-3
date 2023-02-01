@@ -53,7 +53,7 @@ async function verifLogin() {
 
 
         if (response.status === 200) {
-            location.href = "index_edited.html"
+            location.href = "index.html"
         };
     }
 };

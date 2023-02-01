@@ -2,7 +2,7 @@
 if (window.localStorage.getItem("token")) {
 
     const bandeau = document.querySelector('.edition_container');
-
+    bandeau.style.display = "flex"
     bandeau.innerHTML += `
 
     <div class="barre_edition">
@@ -20,9 +20,8 @@ if (window.localStorage.getItem("token")) {
             <i id="edit_icon2" class="fa-regular fa-pen-to-square"></i>
 			<a href="#modal1" class="js_modal">Modifier</a>`
 
-} else {
-    alert("coucou")
 }
+
 /* Fonction fetch pour récuperer toutes les data depuis l'API */
 async function getWorks() {
     let rep = await fetch("http://localhost:5678/api/works");
