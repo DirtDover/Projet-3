@@ -195,7 +195,7 @@ async function generateCard2() {
                     <i class="fa-regular fa-trash-can"></i>
                 </button>
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <figcaption class="suppr_test"><a href="#">éditer</a></figcaption>
+                <figcaption class="suppr_test" ><a href="#">éditer</a></figcaption>
             </figure>`;
 
     };
@@ -277,10 +277,10 @@ function generateForm() {
 
     itemCard.innerHTML += `
 
-            <form method="post" enctype="multipart/form-data" id="form_container" class="form_container">
+            <form  id="form_container" class="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
-                    <input type="file" id="imageUrl" name="imageUrl" accept="image/*" style="display:none" >
+                    <input type="file" id="imageUrl"   accept="image/*" style="display:none" >
                     <label for="imageUrl" class="label_img">+ Ajouter Photo</label>
                     <p class="mo_max">jpg. png 4mo max</p>
                 </div>
@@ -301,53 +301,106 @@ function generateForm() {
 
 /* fonction pour Post un Work */
 
-// Selecteur + URL
-const form = document.getElementById("form_container");
-const url = "http://localhost:5678/api/works";
+function postWork() {
 
-// Ajout de l'événement Submit
-form.addEventListener("submit", function (event) {
+    let formValue = document.querySelector('.titre_input');
 
-    // Désactivation du comportement par défaut du bouton
-    event.preventDefault();
+    if (formValue.value === "") {
+        document.querySelector('.erreur_form').style.display = "block";
+        return false
+    } else {
+        document.querySelector('.erreur_form').style.display = "none";
+        return true
+    }
 
-    // Récupération des données du formulaire
-    const title = form.elements.titre_input.value; // Récupère le titre
-    const file = form.elements.imageUrl.files[0]; // Récupère l'image sélectionnée
-    const category = form.elements.categorie.value; // Récupère l'id de la catégorie
+}
 
-    const formData = {};
-    formData["title"] = title;
-    formData["category"] = category;
+const form = document.querySelector('form');
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        formData["image"] = reader.result;
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const result = postWork();
+    if (result === false)
+        return
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": "Bearer " + window.localStorage.getItem("token")
-            },
-            body: formData
-        })
-            .then(response => {
-                // Vérification du type de contenu de la réponse
-                if (response.headers.get('Content-Type').includes("application/json")) {
-                    return response.json();
-                }
-                throw new Error("Response is not JSON");
-            })
-            .then(data => {
-                console.log("Success:", data);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+    const formData = new FormData(form);
+
+    const file = document.querySelector("#imageUrl")
+    formData.append('image', file.files[0], 'image.jpeg');
+    formData.append('id', '1');
+
+    for (item of formData) {
+        console.log(item[0], item[1]);
     };
-});
+
+    fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+
+            'Authorization': 'Bearer ' + window.localStorage.getItem("token"),
+        },
+        body: formData,
+    })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+})
+
+
+
+
+/*method="post" enctype="multipart/form-data" action="/form-submit.php"
+
+
+
+
+// // Selecteur + URL
+// const form = document.getElementById("form_container");
+// const url = "http://localhost:5678/api/works";
+
+// // Ajout de l'événement Submit
+// form.addEventListener("submit", function (event) {
+
+//     // Désactivation du comportement par défaut du bouton
+//     event.preventDefault();
+
+//     // Récupération des données du formulaire
+//     const title = form.elements.titre_input.value; // Récupère le titre
+//     const file = form.elements.imageUrl.files[0]; // Récupère l'image sélectionnée
+//     const category = form.elements.categorie.value; // Récupère l'id de la catégorie
+
+//     const formData = {};
+//     formData["title"] = title;
+//     formData["category"] = category;
+
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onload = function () {
+//         formData["image"] = reader.result;
+
+//         fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "multipart/form-data",
+//                 "Authorization": "Bearer " + window.localStorage.getItem("token")
+//             },
+//             body: formData
+//         })
+//             .then(response => {
+//                 // Vérification du type de contenu de la réponse
+//                 if (response.headers.get('Content-Type').includes("application/json")) {
+//                     return response.json();
+//                 }
+//                 throw new Error("Response is not JSON");
+//             })
+//             .then(data => {
+//                 console.log("Success:", data);
+//             })
+//             .catch(error => {
+//                 console.error("Error:", error);
+//             });
+//     };
+// });
 
 
 
