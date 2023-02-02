@@ -764,6 +764,12 @@ figcaption a {
 	align-items: center;
 }
 
+#image {
+	width: 200px;
+	height: 195px;
+	margin-top: -75px;
+}
+
 .mo_max {
 	margin-top: 12px;
 	font-size: 10px;

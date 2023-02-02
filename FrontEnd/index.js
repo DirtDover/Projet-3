@@ -282,7 +282,7 @@ function generateForm() {
             <form  id="form_container" class="form_container">
                 <div id="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
-                    <div><img id="image"></img></div>
+                    <div><img id="image" style="display:none" ></img></div>
                     <input  type="file" id="imageUrl" onchange="showPreview(event);"   accept="image/*" style="display:none" >
                     <label for="imageUrl" class="label_img">+ Ajouter Photo</label>
                     <p class="mo_max">jpg. png 4mo max</p>
@@ -323,6 +323,10 @@ function showPreview(event) {
         var image = document.getElementById("image");
         console.log(image)
         image.src = src;
+        document.querySelector('#image').style.display = "block";
+        document.querySelector('.label_img').style.display = "none";
+        document.querySelector('.mo_max').style.display = "none";
+
     }
 }
 
