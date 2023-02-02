@@ -282,7 +282,7 @@ function generateForm() {
             <form  id="form_container" class="form_container">
                 <div id="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
-                    <div id= "imageUrlPreview"></div>
+                    <div><img id="image"></img></div>
                     <input  type="file" id="imageUrl" onchange="showPreview(event);"   accept="image/*" style="display:none" >
                     <label for="imageUrl" class="label_img">+ Ajouter Photo</label>
                     <p class="mo_max">jpg. png 4mo max</p>
@@ -319,9 +319,10 @@ function generateForm() {
 function showPreview(event) {
     if (event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
-        var preview = document.getElementById("imageUrlPreview");
-        preview.src = src;
-        preview.style.display = "block";
+        console.log(src)
+        var image = document.getElementById("image");
+        console.log(image)
+        image.src = src;
     }
 }
 
