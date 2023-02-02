@@ -61,7 +61,7 @@ async function categoriesFiltred(categorie = "") {
             return data.category.name == "Objets";
         });
         console.log(dataFiltred);
-        for (let i = 0; i <= dataFiltred.length; i++) {
+        for (let i = 0; i < dataFiltred.length; i++) {
             itemCard.innerHTML += `
     
                 <figure class="card-gallery">
@@ -74,7 +74,7 @@ async function categoriesFiltred(categorie = "") {
             return data.category.name == "Appartements";
         });
         console.log(dataFiltred);
-        for (let i = 0; i <= dataFiltred.length; i++) {
+        for (let i = 0; i < dataFiltred.length; i++) {
             itemCard.innerHTML += `
     
                 <figure class="card-gallery">
@@ -87,7 +87,7 @@ async function categoriesFiltred(categorie = "") {
             return data.category.name == "Hotels & restaurants";
         });
         console.log(dataFiltred);
-        for (let i = 0; i <= dataFiltred.length; i++) {
+        for (let i = 0; i < dataFiltred.length; i++) {
             itemCard.innerHTML += `
     
                 <figure class="card-gallery">
