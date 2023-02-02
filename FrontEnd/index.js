@@ -280,7 +280,8 @@ function generateForm() {
             <form  id="form_container" class="form_container">
                 <div class="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
-                    <input type="file" id="imageUrl"   accept="image/*" style="display:none" >
+                    <div id= "imageUrlPreview"></div>
+                    <input  type="file" id="imageUrl" onchange="showPreview(event);"   accept="image/*" style="display:none" >
                     <label for="imageUrl" class="label_img">+ Ajouter Photo</label>
                     <p class="mo_max">jpg. png 4mo max</p>
                 </div>
@@ -288,32 +289,62 @@ function generateForm() {
                 <input type="text" name="title" id="titre_input" class="titre_input">
                 <p class="categorie_form">Catégorie</p>
                 <select name="categoryId" id="categorie" class="categorie">
+                    <option value="0"></option>
                     <option value="1">Objet</option>
                     <option value="2">Hôtel & restaurants</option>
                     <option value="3">Appartements</option>
                 </select>
                 <p class="erreur_form">Champs vide ou invalide</p>
-                <input type="submit" id="btn_form" value="Ajouter">
+                <input type="submit" id="btn_form" value="Valider">
             </form>`
         ;
 
 };
 
 /* fonction pour Post un Work */
+function showPreview(event) {
+    if (event.target.files.length > 0) {
+        let src = URL.createObjectURL(event.target.files[0]);
+        let preview = document.getElementById("imageUrlPreview");
+        preview.src = src;
+        preview.style.display = "block";
+    }
+}
+
+
 
 function postWork() {
 
-    let formValue = document.querySelector('.titre_input');
+    let imgValue = document.querySelector('#imageUrl')
+    let titleValue = document.querySelector('.titre_input');
+    let categorieValue = document.querySelector('.categorie')
 
-    if (formValue.value === "") {
+    if (titleValue.value === "") {
+        document.querySelector('.erreur_form').style.display = "block";
+        return false
+    } if (categorieValue.value === "0") {
         document.querySelector('.erreur_form').style.display = "block";
         return false
     } else {
         document.querySelector('.erreur_form').style.display = "none";
         return true
     }
-
 }
+
+/*let categorieValue = document.querySelector('.categorie');
+categorieValue.addEventListener('click', () => {
+    btn_green();
+});
+
+function btn_green() {
+    let imgValue = document.querySelector('#imageUrl');
+    let titleValue = document.querySelector('.titre_input');
+    let categorieValue = document.querySelector('.categorie');
+
+    if (titleValue.value == "string" & categorieValue.value === "1", "2", "3" & imgValue.value == "string") {
+        document.getElementById('#btn_form').style.backgroundColor = "#1D6154";
+    }
+}*/
 
 const form = document.querySelector('form');
 
@@ -327,7 +358,7 @@ form.addEventListener('submit', (e) => {
 
     const file = document.querySelector("#imageUrl")
     formData.append('image', file.files[0], 'image.jpeg');
-    formData.append('id', '1');
+
 
     for (item of formData) {
         console.log(item[0], item[1]);
@@ -342,208 +373,11 @@ form.addEventListener('submit', (e) => {
         body: formData,
     })
         .then(res => res.json())
-        .then(res => console.log(res));
-
-})
-
-
-
-
-/*method="post" enctype="multipart/form-data" action="/form-submit.php"
-
-
-
-
-// // Selecteur + URL
-// const form = document.getElementById("form_container");
-// const url = "http://localhost:5678/api/works";
-
-// // Ajout de l'événement Submit
-// form.addEventListener("submit", function (event) {
-
-//     // Désactivation du comportement par défaut du bouton
-//     event.preventDefault();
-
-//     // Récupération des données du formulaire
-//     const title = form.elements.titre_input.value; // Récupère le titre
-//     const file = form.elements.imageUrl.files[0]; // Récupère l'image sélectionnée
-//     const category = form.elements.categorie.value; // Récupère l'id de la catégorie
-
-//     const formData = {};
-//     formData["title"] = title;
-//     formData["category"] = category;
-
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = function () {
-//         formData["image"] = reader.result;
-
-//         fetch(url, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "multipart/form-data",
-//                 "Authorization": "Bearer " + window.localStorage.getItem("token")
-//             },
-//             body: formData
-//         })
-//             .then(response => {
-//                 // Vérification du type de contenu de la réponse
-//                 if (response.headers.get('Content-Type').includes("application/json")) {
-//                     return response.json();
-//                 }
-//                 throw new Error("Response is not JSON");
-//             })
-//             .then(data => {
-//                 console.log("Success:", data);
-//             })
-//             .catch(error => {
-//                 console.error("Error:", error);
-//             });
-//     };
-// });
-
-
-
-
-/*
-var form = document.getElementById("form_container");
-
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    var title = form.elements.titre_input.value;
-    var imageUrl = form.elements.imageUrl.value;
-    var category = form.elements.categorie.value;
-
-    var data = {
-        "title": title,
-        "image": imageUrl,
-        "category": category
-    };
-    console.log(data);
-    fetch("http://localhost:5678/api/works/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + window.localStorage.getItem("token")
-        },
-        body: JSON.stringify(data)
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log("Success:", data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
+        .then(res => console.log(res))
 
 });
 
 
-*/
-
-
-// const form = document.getElementById('form_container');
-// const url = "http://localhost:5678/api/works";
-
-// form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-
-//     const title = form.elements.titre_input.value;
-//     const imageUrl = form.elements.imageUrl.files[0];
-//     const category = form.elements.categorie.value;
-
-//     const formData = new FormData();
-//     formData.append('title', title);
-//     formData.append('imageUrl', imageUrl);
-//     formData.append('category', category);
-
-//     const data = Object.fromEntries(formData);
-//     console.log(data);
-//     fetch(url, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": "Bearer " + window.localStorage.getItem("token")
-//         },
-//         body: JSON.stringify(data)
-//     })
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log("Success:", data);
-//         })
-//         .catch((error) => {
-//             console.error("Error:", error);
-//         });
-// });
-
-
-
-
-// const form = document.getElementById('form_container');
-
-// form.addEventListener('submit', async (event) => {
-//     event.preventDefault();
-
-//     const title = form.elements.title.value;
-//     const imageUrl = form.elements.imageUrl.files[0];
-//     const category = document.querySelector(".categorie");
-
-//     const formData = new FormData();
-//     formData.append('title', title);
-//     formData.append('imageUrl', imageUrl);
-//     formData.append('category', category);
-//     console.log(formData);
-//     try {
-//         const response = await fetch('http://localhost:5678/api/works', {
-//             method: 'POST',
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": "Bearer " + window.localStorage.getItem("token")
-//             },
-//             body: JSON.stringify(formData),
-//         });
-
-//         if (!response.ok) {
-//             throw new Error(response.statusText);
-//         }
-
-//         alert('Data has been successfully sent to the API.');
-//     } catch (error) {
-//         console.error(error);
-//         alert('An error has occurred while sending the data to the API.');
-//     }
-// });
-
-
-
-
-// const form = document.getElementById("form_container");
-// const url = "http://localhost:5678/api/works";
-
-// form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     const formData = new FormData(form);
-//     const data = Object.fromEntries(formData);
-//     console.log(data);
-//     fetch(url, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization": "Bearer " + window.localStorage.getItem("token")
-//         },
-//         body: JSON.stringify(data)
-
-//     })
-
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log("Success:", data);
-//         })
-//         .catch((error) => {
-//             console.error("Error:", error);
-//         });
-// });
 
 
 
