@@ -278,7 +278,7 @@ function generateForm() {
     itemCard.innerHTML += `
 
             <form  id="form_container" class="form_container">
-                <div class="ajout_img">
+                <div id="ajout_img">
                     <i class="fa-solid fa-image fa-4x"></i>
                     <div id= "imageUrlPreview"></div>
                     <input  type="file" id="imageUrl" onchange="showPreview(event);"   accept="image/*" style="display:none" >
@@ -299,13 +299,25 @@ function generateForm() {
             </form>`
         ;
 
+    document.querySelector('#imageUrl').addEventListener('change', () => {
+        btn_green();
+    });
+
+    document.querySelector('.titre_input').addEventListener('input', () => {
+        btn_green();
+    });
+
+    document.querySelector('.categorie').addEventListener('input', () => {
+        btn_green();
+    });
+
 };
 
 /* fonction pour Post un Work */
 function showPreview(event) {
     if (event.target.files.length > 0) {
-        let src = URL.createObjectURL(event.target.files[0]);
-        let preview = document.getElementById("imageUrlPreview");
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("imageUrlPreview");
         preview.src = src;
         preview.style.display = "block";
     }
@@ -331,20 +343,17 @@ function postWork() {
     }
 }
 
-/*let categorieValue = document.querySelector('.categorie');
-categorieValue.addEventListener('click', () => {
-    btn_green();
-});
-
 function btn_green() {
-    let imgValue = document.querySelector('#imageUrl');
-    let titleValue = document.querySelector('.titre_input');
-    let categorieValue = document.querySelector('.categorie');
+    let imgValue = document.querySelector('#imageUrl').value;
+    let titleValue = document.querySelector('.titre_input').value;
+    let categorieValue = document.querySelector('.categorie').value;
 
-    if (titleValue.value == "string" & categorieValue.value === "1", "2", "3" & imgValue.value == "string") {
-        document.getElementById('#btn_form').style.backgroundColor = "#1D6154";
+    if (titleValue != '' & categorieValue != 0 & imgValue != '') {
+        document.getElementById('btn_form').style.backgroundColor = "#1D6154";
+    } else {
+        document.getElementById('btn_form').style.backgroundColor = "#000000";
     }
-}*/
+}
 
 const form = document.querySelector('form');
 
