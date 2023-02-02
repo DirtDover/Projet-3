@@ -288,7 +288,7 @@ function generateForm() {
                 <p class="titre_form">Titre</p>
                 <input type="text" name="title" id="titre_input" class="titre_input">
                 <p class="categorie_form">Catégorie</p>
-                <select name="categoryId" id="categorie" class="categorie">
+                <select name="category" id="categorie" class="categorie">
                     <option value="0"></option>
                     <option value="1">Objet</option>
                     <option value="2">Hôtel & restaurants</option>
