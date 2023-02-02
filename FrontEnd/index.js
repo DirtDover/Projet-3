@@ -200,20 +200,24 @@ async function generateCard2() {
 
     };
 
-    const deleteWork = document.getElementsByClassName("trash")
-    for (let i = 0; i < deleteWork.length; i++) {
+    const trashButton = document.getElementsByClassName("trash"); // Tous les boutons poubelle
 
-        deleteWork[i].addEventListener("click", () => {
-            deletingWork(i + 1);
+    // Pour tous les trash buttons
+    for (let i = 0; i < trashButton.length; i++) {
+
+        trashButton[i].addEventListener("click", () => {
+            const work = allWork[i]; // Work du bouton trash
+            const id = work.id; // Id du work sélectionné
+            deletingWork(id);
         });
     }
 };
 
 /* Delete elements de la modale*/
 
-const deletingWork = async function (i) {
+const deletingWork = async function (id) {
 
-    const response = await fetch("http://localhost:5678/api/works/" + i, {
+    const response = await fetch("http://localhost:5678/api/works/" + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -222,8 +226,6 @@ const deletingWork = async function (i) {
     })
         .then(res => console.log(res))
 
-    let test = await response.json();
-    console.log(test);
 };
 
 /* fonction pour ouvrir la modale 2 d'ajout d'éléments */
