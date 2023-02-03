@@ -1,4 +1,4 @@
-
+/* code qui gère l'afficahge et la disparition des éléments quand on se log */
 if (window.localStorage.getItem("token")) {
 
     const bandeau = document.querySelector('.edition_container');
@@ -127,7 +127,7 @@ filtreHotel.addEventListener("click", () => {
     categoriesFiltred("Hotels & restaurants");
 });
 
-/* Création de la modale */
+/* Création de la modale 1 */
 
 let modal = null
 
@@ -172,13 +172,15 @@ window.addEventListener('keydown', function (e) {
     }
 })
 
+
+/* Fonction pour créer chaque Card de chaque élément récuper de l'API*/
 async function getWorks() {
     let rep = await fetch("http://localhost:5678/api/works");
     let reponse = await rep.json();
     return reponse;
 };
 
-/* Fonction pour créer chaque Card de chaque élément récuper de l'API*/
+
 async function generateCard2() {
 
     let allWork = await getWorks("http://localhost:5678/api/works")
@@ -200,14 +202,14 @@ async function generateCard2() {
 
     };
 
-    const trashButton = document.getElementsByClassName("trash"); // Tous les boutons poubelle
+    /* Pour tous les trash btn */
+    const trashButton = document.getElementsByClassName("trash");
 
-    // Pour tous les trash buttons
     for (let i = 0; i < trashButton.length; i++) {
 
         trashButton[i].addEventListener("click", () => {
-            const work = allWork[i]; // Work du bouton trash
-            const id = work.id; // Id du work sélectionné
+            const work = allWork[i];
+            const id = work.id;
             deletingWork(id);
         });
     }
@@ -273,6 +275,8 @@ window.addEventListener('keydown', function (e) {
     }
 })
 
+/* fonction qui génère les données dans la modal */
+
 function generateForm() {
 
     const itemCard = document.getElementById('form_container');
@@ -301,6 +305,8 @@ function generateForm() {
             </form>`
         ;
 
+    /* Sélector des différents champs du form */
+
     document.querySelector('#imageUrl').addEventListener('change', () => {
         btn_green();
     });
@@ -315,7 +321,7 @@ function generateForm() {
 
 };
 
-/* fonction pour Post un Work */
+/* fonction pour preview l'image du work */
 function showPreview(event) {
     if (event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
@@ -330,7 +336,7 @@ function showPreview(event) {
     }
 }
 
-
+/* fonction de vérification si les champs du form ne sont pas vide */
 
 function postWork() {
 
@@ -338,6 +344,10 @@ function postWork() {
     let titleValue = document.querySelector('.titre_input');
     let categorieValue = document.querySelector('.categorie')
 
+    if (imgValue.value === "") {
+        document.querySelector('.erreur_form').style.display = "block";
+        return false
+    }
     if (titleValue.value === "") {
         document.querySelector('.erreur_form').style.display = "block";
         return false
@@ -350,6 +360,8 @@ function postWork() {
     }
 }
 
+/* Fonction qui fait passer le btn d'envoie du Work en vert quand les champs sont remplis */
+
 function btn_green() {
     let imgValue = document.querySelector('#imageUrl').value;
     let titleValue = document.querySelector('.titre_input').value;
@@ -358,9 +370,11 @@ function btn_green() {
     if (titleValue != '' & categorieValue != 0 & imgValue != '') {
         document.getElementById('btn_form').style.backgroundColor = "#1D6154";
     } else {
-        document.getElementById('btn_form').style.backgroundColor = "#000000";
+        document.getElementById('btn_form').style.backgroundColor = "#A7A7A7";
     }
 }
+
+/* fonction Fetch Post pour envoyer le work */
 
 const form = document.querySelector('form');
 

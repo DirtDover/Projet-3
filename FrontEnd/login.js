@@ -4,6 +4,7 @@ login.addEventListener("click", () => {
     verifLogin();
 });
 
+/*Fonction qui vérifie les champs et qui log */
 
 async function verifLogin() {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
