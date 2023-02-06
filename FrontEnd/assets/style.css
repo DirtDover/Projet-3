@@ -342,6 +342,7 @@ footer nav ul {
 	margin-left: 0px;
 	font-size: 16px;
 	font-weight: 700;
+
 }
 
 .btn-filter1:hover,
@@ -462,6 +463,8 @@ footer nav ul {
 }
 
 .btn_login {
+	font-size: 14px;
+	font-family: 'Syne';
 	background-color: #1D6154;
 	border-radius: 60px;
 	width: 50%;
@@ -471,6 +474,7 @@ footer nav ul {
 	color: #FFFFFF;
 	border: none;
 	margin-bottom: -30px;
+	cursor: pointer;
 }
 
 .footer_login {
@@ -541,6 +545,7 @@ footer nav ul {
 	color: #FFFFFF;
 	border-radius: 2px;
 	margin-left: -5px;
+	cursor: pointer;
 
 }
 
@@ -690,6 +695,7 @@ figcaption a {
 }
 
 #title_modal2 {
+	font-size: 26px;
 	color: black;
 	font-style: normal;
 	font-weight: 400;
