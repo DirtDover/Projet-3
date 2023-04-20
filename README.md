@@ -14,4 +14,4 @@ J'ai appri grâce à ce projet à :
 - Création d'une fenètre modale pour ajouter ou supprimer des éléments au backend.
 - Filtrer des éléments (Filter())
 
-**Lien du site** : [Sophie Bluel](https://github.com/DirtDover/Sophie-Bluel)
+**Lien du site** : [Sophie Bluel](https://dirtdover.github.io/Sophie-Bluel/)
