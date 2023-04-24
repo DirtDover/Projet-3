@@ -15,3 +15,10 @@ J'ai appri grâce à ce projet à :
 - Filtrer des éléments (Filter())
 
 **Lien du site** : [Sophie Bluel](https://dirtdover.github.io/Sophie-Bluel/)
+
+Compte de test pour Sophie Bluel
+
+```
+email: sophie.bluel@test.tld
+
+password: S0phie
