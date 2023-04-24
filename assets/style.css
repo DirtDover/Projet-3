@@ -182,6 +182,12 @@ nav ul {
 	list-style-type: none;
 
 }
+a{
+	text-decoration: none;
+}
+a:visited{
+	color: black;
+}
 
 nav li {
 	padding: 0 10px;
