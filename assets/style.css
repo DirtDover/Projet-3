@@ -188,6 +188,9 @@ a{
 a:visited{
 	color: black;
 }
+a:hover{
+	color: #B1663C;
+}
 
 nav li {
 	padding: 0 10px;
